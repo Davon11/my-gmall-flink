@@ -73,24 +73,6 @@
             <version>${flink.version}</version>
         </dependency>
 
-<!--        <dependency>
-            <groupId>org.apache.flink</groupId>
-            <artifactId>flink-connector-kafka-0.11_2.11</artifactId>
-            <version>1.11.0</version>
-        </dependency>-->
-        <!-- https://mvnrepository.com/artifact/org.apache.flink/flink-connector-kafka -->
-<!--        <dependency>
-            <groupId>org.apache.flink</groupId>
-            <artifactId>flink-connector-kafka_2.11</artifactId>
-            <version>1.12.0</version>
-        </dependency>-->
-
-<!--        <dependency>
-            <groupId>org.apache.kafka</groupId>
-            <artifactId>kafka_2.11</artifactId>
-            <version>2.2.0</version>
-        </dependency>-->
-
         <dependency>
             <groupId>org.apache.bahir</groupId>
             <artifactId>flink-connector-redis_2.11</artifactId>
@@ -224,7 +206,7 @@
                             </filters>
                             <transformers>
                                 <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>com.atguigu.day1.WordCountFromBatch</mainClass>
+                                    <mainClass>com.davon.Flink01DataStream</mainClass>
                                 </transformer>
                             </transformers>
                         </configuration>
