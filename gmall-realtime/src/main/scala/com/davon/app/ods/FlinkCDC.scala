@@ -3,7 +3,7 @@ package com.davon.app.ods
 import com.alibaba.ververica.cdc.connectors.mysql.MySQLSource
 import com.alibaba.ververica.cdc.connectors.mysql.table.StartupOptions
 import com.davon.app.func.MyDebeziumDeserialization
-import com.davon.util.MyKafkaUtil
+import com.davon.util.{MyFlinkUtil, MyKafkaUtil}
 import org.apache.flink.api.common.restartstrategy.RestartStrategies
 import org.apache.flink.runtime.state.filesystem.FsStateBackend
 import org.apache.flink.streaming.api.environment.CheckpointConfig.ExternalizedCheckpointCleanup
@@ -15,11 +15,7 @@ object FlinkCDC {
     val env = StreamExecutionEnvironment.getExecutionEnvironment
     env.setParallelism(1)
 
-    env.enableCheckpointing(5000L)
-    env.getCheckpointConfig.setCheckpointTimeout(10*1000L)
-    env.setStateBackend(new FsStateBackend("hdfs://hadoop102:9000/flink1109/ck"))
-    env.getCheckpointConfig.enableExternalizedCheckpoints(ExternalizedCheckpointCleanup.RETAIN_ON_CANCELLATION)
-    env.setRestartStrategy(RestartStrategies.fixedDelayRestart(3, 5000L))
+//    MyFlinkUtil.setCKProperties(env, 5*1000L, 10*1000L)
 
     val cdcSource = MySQLSource.builder()
       .hostname("hadoop103").port(3306)
