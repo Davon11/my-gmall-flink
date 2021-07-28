@@ -3,7 +3,7 @@ package com.davon.app.ods
 import com.alibaba.ververica.cdc.connectors.mysql.MySQLSource
 import com.alibaba.ververica.cdc.connectors.mysql.table.StartupOptions
 import com.davon.app.func.MyDebeziumDeserialization
-import com.davon.app.util.MyKafkaUtil
+import com.davon.util.MyKafkaUtil
 import org.apache.flink.api.common.restartstrategy.RestartStrategies
 import org.apache.flink.runtime.state.filesystem.FsStateBackend
 import org.apache.flink.streaming.api.environment.CheckpointConfig.ExternalizedCheckpointCleanup

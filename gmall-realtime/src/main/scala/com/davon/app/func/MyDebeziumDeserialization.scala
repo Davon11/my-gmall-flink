@@ -29,6 +29,15 @@ class MyDebeziumDeserialization extends DebeziumDeserializationSchema[String]{
         afterJson.put(field.name(), after.get(field))
       }
     }
+
+    var `type` = ""
+    op match {
+      case null =>
+      case "r" => `type` = "insert"
+      case "u" => `type` = "update"
+      case "d" => `type` = "delete"
+    }
+
     val source = value.getStruct("source")
     val db = source.getString("db")
     val table = source.getString("table")
@@ -39,7 +48,7 @@ class MyDebeziumDeserialization extends DebeziumDeserializationSchema[String]{
     result.put("beforeDate", beforeJson.toJSONString)
     result.put("db", db)
     result.put("tableName", table)
-    result.put("op", op)
+    result.put("type", `type`)
     result.put("ts", ts)
 
     out.collect(result.toString)
